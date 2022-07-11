@@ -23,8 +23,8 @@ endif()
 include(ExternalProject)
 
 set(VERISILICON_TIMVX_PROJECT extern_tim-vx)
-set(VERISILICON_TIMVX_SOURCES_DIR ${paddle_rdir}/tim-vx/TIM-VX)
-set(VERISILICON_TIMVX_INSTALL_DIR ${paddle_rdir}/tim-vx/install)
+set(VERISILICON_TIMVX_SOURCES_DIR ${PADDLE_RDIR}/tim-vx/TIM-VX)
+set(VERISILICON_TIMVX_INSTALL_DIR ${PADDLE_RDIR}/tim-vx/install)
 set(VERISILICON_TIMVX_BUILD_COMMAND $(MAKE) -j)
 
 if(NOT NNADAPTER_VERISILICON_TIMVX_VIV_SDK_ROOT)
@@ -57,7 +57,7 @@ if(CMAKE_SYSTEM_NAME MATCHES "Android")
   # set(VERISILICON_TIMVX_PATCH_COMMAND ${VERISILICON_TIMVX_PATCH_COMMAND} && sed -e "s/vsi_nn_kernel_node_param_t node_params\\[param_num\\] = {NULL}$<SEMICOLON>/vsi_nn_kernel_node_param_t node_params[param_num]$<SEMICOLON> memset(node_params, 0, sizeof(vsi_nn_kernel_node_param_t) * param_num)$<SEMICOLON>/g" -i src/tim/vx/ops/custom_base.cc)
 endif()
 
-message(info "${paddle_rdir}/tim-vx/TIM-VX/synap/include/ovxlib")
+message(info "${PADDLE_RDIR}/tim-vx/TIM-VX/synap/include/ovxlib")
 
 ExternalProject_Add(
   ${VERISILICON_TIMVX_PROJECT}
@@ -74,11 +74,11 @@ ExternalProject_Add(
                       -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
                       -DEXTERNAL_VIV_SDK=${NNADAPTER_VERISILICON_TIMVX_VIV_SDK_ROOT}
                       -DCMAKE_INSTALL_PREFIX=${VERISILICON_TIMVX_INSTALL_DIR}
-                      -DEXTERNAL_VIV_SDK=${paddle_rdir}/tim-vx/TIM-VX/synap
+                      -DEXTERNAL_VIV_SDK=${PADDLE_RDIR}/tim-vx/TIM-VX/synap
                       -DTIM_VX_USE_EXTERNAL_OVXLIB=ON
-                      -DOVXLIB_LIB=${paddle_rdir}/tim-vx/TIM-VX/synap/lib/armv7a-linux-baseline/libovxlib_VS680A0.so
-                      -DOVXLIB_INC=${paddle_rdir}/tim-vx/TIM-VX/synap/include/ovxlib
-                      -DCMAKE_TOOLCHAIN_FILE=${paddle_rdir}/tim-vx/TIM-VX/cmake/local_sdk.cmake
+                      -DOVXLIB_LIB=${PADDLE_RDIR}/tim-vx/TIM-VX/synap/lib/armv7a-linux-baseline/libovxlib_VS680A0.so
+                      -DOVXLIB_INC=${PADDLE_RDIR}/tim-vx/TIM-VX/synap/include/ovxlib
+                      -DCMAKE_TOOLCHAIN_FILE=${PADDLE_RDIR}/tim-vx/TIM-VX/cmake/local_sdk.cmake
                       ${CROSS_COMPILE_CMAKE_ARGS}
 )
 
