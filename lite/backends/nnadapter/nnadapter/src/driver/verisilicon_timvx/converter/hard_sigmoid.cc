@@ -30,11 +30,11 @@ int ConvertHardSigmoid(Converter* converter, core::Operation* operation) {
     input_tensor = converter->ConvertOperand(input_operand);
   }
   auto output_tensor = converter->ConvertOperand(output_operand);
-  auto hard_sigmoid_op =
-      converter->graph()->CreateOperation<tim::vx::ops::HardSigmoid>(alpha,
-                                                                     beta);
-  hard_sigmoid_op->BindInputs({input_tensor});
-  hard_sigmoid_op->BindOutputs({output_tensor});
+  //auto hard_sigmoid_op =
+  //    converter->graph()->CreateOperation<tim::vx::ops::HardSigmoid>(alpha,
+  //                                                                   beta);
+  //hard_sigmoid_op->BindInputs({input_tensor});
+  //hard_sigmoid_op->BindOutputs({output_tensor});
   return NNADAPTER_NO_ERROR;
 }
 
