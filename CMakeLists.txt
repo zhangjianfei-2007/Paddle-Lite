@@ -16,8 +16,11 @@ set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_SYSTEM_PROCESSOR arm)
 
 # set base directory, must use full path
-set(PADDLE_RDIR /home/zhangjf/project/vs680)
+if(NOT DEFINED ENV{HOME_DIR})
+	message(FATAL_ERROR "NOT DEFINED HOME_DIR env variable.")
+endif()
 
+set(PADDLE_RDIR $ENV{HOME_DIR})
 set(CMAKE_C_COMPILER arm-linux-gnueabihf-gcc)
 set(CMAKE_CXX_COMPILER arm-linux-gnueabihf-g++)
 set(CMAKE_AR arm-linux-gnueabihf-ar)
